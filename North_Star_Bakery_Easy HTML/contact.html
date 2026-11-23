@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Contact</title>
+</head>
+<body>
+
+  <header>
+    <img src="images/bakery-logo.png" alt="North Star Bakery logo" width="100">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Contact Us</h1>
+    <p>128 Maple Street. Tue-Sun, 7am to 5pm. Closed Monday.</p>
+
+    <form>
+      <fieldset>
+        <legend>Pre-order or question</legend>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" required><br>
+
+        <label for="date">Pickup date:</label>
+        <input type="date" id="date" required><br>
+
+        <label for="type">Request type:</label>
+        <select id="type">
+          <option>Pre-order</option>
+          <option>General question</option>
+        </select><br>
+
+        <label for="items">Item details:</label>
+        <textarea id="items" required></textarea><br>
+
+        <label for="allergy">Allergy notes:</label>
+        <textarea id="allergy"></textarea><br>
+
+        <button type="submit">Send</button>
+      </fieldset>
+    </form>
+  </main>
+
+  <footer>
+    <p>North Star Bakery, 128 Maple Street</p>
+  </footer>
+
+</body>
+</html>
