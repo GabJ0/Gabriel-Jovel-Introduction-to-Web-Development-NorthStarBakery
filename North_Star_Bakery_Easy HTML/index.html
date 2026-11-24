@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>North Star Bakery</title>
 
-  <style>
+<style>
     body {background-color: #F8F5EC; text-color: #4a3428}
     h1, h2 {color: #b5532a}
     a:link {color: #2c3e6b}
@@ -12,22 +12,31 @@
     a:hover {color: #998138}
     a:focus {color: #2c3e6b}
     a:active {color: #998138}
+
+    .button-link {display: inline-block; padding: 12px 24px; background-color: #0066cc; color: white; text-decoration: none; cursor: pointer}
+    .button-link:hover {background-color: #004499}
+    .button-link:focus {outline: 2px solid #004499; outline-offset: 2px}
+    .button-link:active {background-color: #002244}
+
+    nav li {display: inline-block; margin-right: 20px}
+
   </style>
-  
+
 </head>
 <body>
 
   <header>
-    <img src="images/bakery-logo.png" alt="North Star Bakery logo" width="100">
     <nav>
+        <img src="images/bakery-logo.png" alt="North Star Bakery logo" width="100">
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="products.html">Products</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <a href= "index.html" class="button-link">Home</a>
+        <a href= "products.html" class="button-link">Products</a>
+        <a href= "about.html" class="button-link">About</a>
+        <a href= "contact.html"class="button-link">Contact</a>
       </ul>
     </nav>
   </header>
+
 
   <main>
     <h1>Welcome to North Star Bakery</h1>
