@@ -45,7 +45,7 @@
   function removeItem(name) {cart[name].qty = cart[name].qty - 1; if (cart[name].qty === 0) {delete cart[name]} showCart()}
 
   function showCart() {let html = ""; let total = 0; for (let name in cart) {html = html + "<li>" + name + " x " + cart[name].qty + " = $" + cart[name].price * cart[name].qty + " <button onclick=\"removeItem('" + name + "')\">-</button></li>"; total = total + cart[name].price * cart[name].qty}
-  document.getElementById("list").innerHTML = html; document.getElementById("total").textContent = total}
+  document.getElementById("list").innerHTML = html; document.getElementById("total").textContent = total; localStorage.setItem("cart", JSON.stringify(cart))}
 
   function checkout() {let total = 0; for (let name in cart) {total = total + cart[name].price * cart[name].qty;}
      let name = document.getElementById("custName").value.trim();
@@ -64,7 +64,11 @@
      ok = false;}
      if (!ok) {return}
 
-    document.getElementById("message").innerHTML = "Thank you, " + name + "! Your order total was $" + total + ".<br>We will contact you at " + phone + " when it is ready for pickup."; cart = {}; showCart()}
+     document.getElementById("message").innerHTML = "Thank you, " + name + "! Your order total was $" + total + ".<br>We will contact you at " + phone + " when it is ready for pickup."; cart = {}; showCart()}
+
+     let saved = localStorage.getItem("cart");
+     if (saved) {cart = JSON.parse(saved); showCart()}
+
 </script>
 
 <body>
