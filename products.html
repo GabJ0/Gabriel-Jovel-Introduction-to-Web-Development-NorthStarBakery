@@ -28,7 +28,10 @@
     button {background-color: #B5532A; color: #F1EDEB; border: none; border-radius: 6px; padding: 10px 16px; cursor: pointer}
     button:hover {background-color: #C19E84; color: #483121}
    
+    #order {background-color: #E8D9CC; padding: 20px; border-radius: 12px}
     #total, #message {color: #B5532A; font-weight: bold} 
+
+    .error {color: #B00020; font-weight: bold; margin-left: 8px}
 
 </style>
 
@@ -44,8 +47,24 @@
   function showCart() {let html = ""; let total = 0; for (let name in cart) {html = html + "<li>" + name + " x " + cart[name].qty + " = $" + cart[name].price * cart[name].qty + " <button onclick=\"removeItem('" + name + "')\">-</button></li>"; total = total + cart[name].price * cart[name].qty}
   document.getElementById("list").innerHTML = html; document.getElementById("total").textContent = total}
 
-  function checkout() {let total = 0; for (let name in cart) {total = total + cart[name].price * cart[name].qty} if (total === 0) {document.getElementById("message").textContent = "Your order is empty."; return}
-  document.getElementById("message").innerHTML = "Thank you! Your order total was $" + total + ".<br>It will be ready for pickup shortly."; cart = {}; showCart()}
+  function checkout() {let total = 0; for (let name in cart) {total = total + cart[name].price * cart[name].qty;}
+     let name = document.getElementById("custName").value.trim();
+     let phone = document.getElementById("custPhone").value.trim();
+
+     document.getElementById("custNameError").textContent = "";
+     document.getElementById("custPhoneError").textContent = "";
+     document.getElementById("message").textContent = "";
+
+     if (total === 0) {
+     document.getElementById("message").textContent = "Your order is empty."; return}
+
+     let ok = true; 
+     if (name === "") {document.getElementById("custNameError").textContent = "Please enter your name."; ok = false} 
+     if (!/^\d{10}$/.test(phone)) {document.getElementById("custPhoneError").textContent = "Enter a 10-digit phone number, numbers only.";
+     ok = false;}
+     if (!ok) {return}
+
+    document.getElementById("message").innerHTML = "Thank you, " + name + "! Your order total was $" + total + ".<br>We will contact you at " + phone + " when it is ready for pickup."; cart = {}; showCart()}
 </script>
 
 <body>
@@ -63,14 +82,25 @@
   </header>
 
   <main>
-     <h2>My order</h2>
-     <button onclick="addItem('Harvest Cookie Box', 18)">Add Harvest Cookie Box ($18)</button>
-     <button onclick="addItem('Sourdough loaf', 8)">Add Sourdough loaf ($8)</button>
-     <button onclick="addItem('Croissant', 4)">Add Croissant ($4)</button>
-     <button onclick="checkout()">Checkout</button><p id="message"></p>
+     <div id="order">
+       <h2>My order</h2>
+       <button onclick="addItem('Signature Loaf', 10)">Add Signature Loaf ($10)</button>
+       <button onclick="addItem('Harvest Cookie Box', 18)">Add Harvest Cookie Box ($18)</button>
+       <button onclick="addItem('Sourdough loaf', 8)">Add Sourdough loaf ($8)</button>
+       <button onclick="addItem('Croissant', 4)">Add Croissant ($4)</button>
+     
+       <ul id="list"></ul>
+       <p>Total: $<span id="total">0</span></p>
 
-     <ul id="list"></ul>
-     <p>Total: $<span id="total">0</span></p>
+       <label for="custName">Name:</label>
+       <input type="text" id="custName">
+       <span id="custNameError" class="error"></span><br>
+       <label for="custPhone">Phone:</label>
+       <input type="text" id="custPhone">
+       <span id="custPhoneError" class="error"></span><br>
+
+       <button onclick="checkout()">Checkout</button><p id="message"></p>
+   </div>
 
     <h1>Our Products</h1>
 
